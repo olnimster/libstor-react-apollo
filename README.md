@@ -45,10 +45,8 @@ Simple local React and Apollo state management without redux, mobx.
 * Material-ui
 
 ***
-
-![Main page](https://user-images.githubusercontent.com/8253434/151821710-b81a6810-320c-4f69-ae7e-d997aa0cae97.png)
-![Book page](https://user-images.githubusercontent.com/8253434/151821719-7041f7b4-f662-45ed-b474-b88b81e4f859.png)
-
+![Main page](https://user-images.githubusercontent.com/8253434/151849886-07fd94a6-425e-41b5-9df7-3653c82066bf.png)
+![Book page](https://user-images.githubusercontent.com/8253434/151849891-bb00aa98-5860-4015-9424-e09e00f681d5.png)
 
 You can view a live demo over at https://protected-plains-10953.herokuapp.com/
 
