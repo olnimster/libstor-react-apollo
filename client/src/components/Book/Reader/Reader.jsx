@@ -1,6 +1,5 @@
 import React from 'react';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import './reader.module.css';
 import {useParams} from "react-router-dom";
 import {useQuery} from "@apollo/client";
 import {BOOK_QUERY_READ} from "../../Util/graphql";

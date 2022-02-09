@@ -19,7 +19,6 @@ export const SearchResult = () => {
 
     if (loading) return <Loader/>;
     if (error) return <ErrorMessage err={error.message}/>;
-    // if (error) return `Loading error! ${error.message}`;
 
     return (
         <Grid container direction="column" alignItems="center" >

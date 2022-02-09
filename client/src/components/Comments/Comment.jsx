@@ -1,45 +1,61 @@
 import React, {useContext} from 'react';
 import moment from 'moment';
 import {Avatar, Grid, Paper} from "@material-ui/core";
-import "./comment.module.css";
 import DeleteCommentButton from "./DeleteCommentButton";
 import {AuthContext} from "../Authorization/auth";
 import avatarImg from "../../assets/avatar-default-1.png"
 import {IMGPATH} from "../Util/config"
+import Typography from "@material-ui/core/Typography";
 
+const useStyles = makeStyles(() => ({
+    commentWrap: {
+        padding: 8
+    },
+    comment: {
+        padding: "15px 20px"
+    },
+    text: {
+        padding: 10
+    }
+}));
 
 function Comment({comm, bookId}) {
     const {user} = useContext(AuthContext);
-
+    const classes = useStyles();
     let avatar = avatarImg;
     if(comm.avatar){
         avatar = `${IMGPATH}${comm.avatar}`
     }
     let publicName = 'anonim';
     if (comm.publicName) {publicName = comm.publicName}
+    let isAutorComment = user && user.id === comm.user;
+
     return (
-        <div style={{padding: 14}} className="App">
-            <Paper style={{padding: "15px 20px"}}>
-                <Grid container wrap="nowrap" spacing={2} >
-                        <Grid item >
-                            <Avatar alt={publicName} src={avatar}/>
-                        </Grid>
-                    <Grid justifyContent="flex-start" container >
-                        <h4 style={{margin: 0, textAlign: "left"}}>{publicName}</h4>
-                        <p style={{textAlign: "left"}}>
-                            {comm.body}
-                        </p>
+        <div className={classes.commentWrap}>
+            <Paper className={classes.comment}>
+                <Grid container wrap="nowrap" spacing={2}>
+                    <Grid item>
+                        <Avatar alt={publicName} src={avatar}/>
                     </Grid>
-                    <Grid item >
-                        {user && user.id === comm.user && (
-                            <DeleteCommentButton commentId={comm.id} bookId={bookId}/>
-                        )}
+                    <Grid justifyContent="flex-start" container>
+                        <Typography variant="caption">
+                            {publicName}
+                        </Typography>
+                        <Grid container>
+                            <Typography variant="body1" className={classes.text}>
+                                {comm.body}
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                    <Grid item>
+                        {isAutorComment &&
+                        <DeleteCommentButton commentId={comm.id} bookId={bookId}/>
+                        }
                     </Grid>
                 </Grid>
-                <div style={{textAlign: "left", color: "gray"}}>
+                <Typography variant="caption">
                     {moment(comm.createdAt).fromNow(true)}
-                </div>
-
+                </Typography>
             </Paper>
         </div>
     );
