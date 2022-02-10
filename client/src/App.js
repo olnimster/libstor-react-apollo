@@ -15,6 +15,7 @@ import NewBooks from "./components/Header/menuGroup/BooksMenu/NewBooks";
 import Footer from "./components/Footer/Footer";
 import {ThemeProvider} from "@material-ui/styles";
 import theme from "./components/Util/theme";
+import Loader from "./components/Util/Loader/Loader";
 
 const Page404 = lazy(() => import('./components/Page404/Page404').then(({Page404}) => ({default: Page404})),);
 const BookShelf = lazy(() => import('./components/Header/menuGroup/MyBooksBookshelf/BookShelf').then(({BookShelf}) => ({default: BookShelf})),);
@@ -34,9 +35,9 @@ function App() {
     return (
         <AuthProvider>
             <Router>
-                <Suspense fallback={<div>Загрузка...</div>}>
-                    <ThemeProvider theme={theme}>
-                        <Header/>
+                <ThemeProvider theme={theme}>
+                    <Header/>
+                    <Suspense fallback={<div><Loader/></div>}>
                         <Switch>
                             <Route exact path='/' component={Main}/>
                             <Route exact path='/mybooks' component={MyBooks}/>
@@ -56,9 +57,9 @@ function App() {
                             <IsAuthRoute path='/profile/' component={Profile}/>
                             <Route path="*" component={Page404}/>
                         </Switch>
-                        <Footer/>
-                    </ThemeProvider>
-                </Suspense>
+                    </Suspense>
+                    <Footer/>
+                </ThemeProvider>
             </Router>
         </AuthProvider>
     )
