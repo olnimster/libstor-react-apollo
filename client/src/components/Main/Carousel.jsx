@@ -3,6 +3,9 @@ import {Swiper, SwiperSlide} from "swiper/react/swiper-react";
 import CardOne from "../Card/CardOne";
 import {useWindowDimensions} from "../Util/hooks";
 import {makeStyles} from "@material-ui/core/styles";
+import SwiperCore, { Pagination, Navigation } from 'swiper';
+
+SwiperCore.use([Pagination, Navigation]);
 
 const useStyles = makeStyles(() => ({
     swiper: {
